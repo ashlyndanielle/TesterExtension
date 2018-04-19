@@ -27,4 +27,18 @@ chrome.runtime.onInstalled.addListener( () => {
   chrome.storage.sync.get(['color'], result => {
     console.log('The color is currently ', result.color);
   })
+  // adding rules for when extension is available
+  // first step is to remove all undefined rules
+  // then add rules using new chrome.delcarativeContent.PageStateMatcher
+  // list of PageStateMatchers here https://developer.chrome.com/extensions/declarativeContent#type-PageStateMatcher
+  chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
+    chrome.declarativeContent.onPageChanged.addRules([{
+      conditions: [ new chrome.declarativeContent.PageStateMatcher({
+        pageUrl: { hostEquals: 'developer.chrome.com' }
+      })],
+      // shows the extension's page actions while ^^ conditions are met
+      // can be used without host permissions but must have a page action
+      actions: [ new chrome.declarativeContent.ShowPageAction() ]
+    }])
+  })
 })
