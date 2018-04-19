@@ -4,7 +4,7 @@
   "description": "Build an Extension!",
   "permissions": ["declarativeContent", "storage"],
   "background": {
-    "scripts": ["js/background.js", "js/popup.js"],
+    "scripts": ["js/background.js"],
     "persistent": false
   },
   "page_action": {
@@ -16,9 +16,6 @@
       "48": "images/get_started48.png",
       "128": "images/get_started128.png"
     }
-  },
-  "chrome_url_overrides": {
-    "newtab": "popup.html"
   },
   "icons": {
     "16": "images/get_started16.png",
