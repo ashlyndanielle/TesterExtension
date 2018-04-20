@@ -23,11 +23,13 @@ body {
 
 .nasa-caption {
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   right: 10px;
   color: white;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.8);
   padding: 15px 20px;
+  margin: 2px;
+  box-shadow: 0 0 7px 0 #ffffff4d;
   display: none;
 }
 
