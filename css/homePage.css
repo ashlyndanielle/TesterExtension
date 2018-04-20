@@ -16,7 +16,7 @@ body {
   opacity: .8;
 }
 
-#nasa-img:hover {
+#container:hover > img {
   height: calc(100vh - 20px);
   opacity: 1;
 }
@@ -27,10 +27,12 @@ body {
   right: 10px;
   color: white;
   background: rgba(0,0,0,0.5);
-  width: 600px;
-  padding: 20px;
+  padding: 15px 20px;
   display: none;
-  transition: .1s ease .3s;
+}
+
+.nasa-caption:hover {
+  display: block;
 }
 
 .nasa-caption::before {
