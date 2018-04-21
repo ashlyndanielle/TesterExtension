@@ -5,6 +5,11 @@ $(document).ready(function() {
     'count': 5
   });
 
+  let section = 'home';
+  let nytArticles = `https://api.nytimes.com/svc/topstories/v2/${section}.json` + $.param({
+    'api-key': config.nytKey
+  });
+
   const nasaContainer = $('#container');
   const nasaImg = $('#nasa-img');
   const caption = $('.nasa-caption');
@@ -21,7 +26,7 @@ $(document).ready(function() {
   })
 
   caption.hover( () => {
-    caption.css('color', 'red');
+    caption.css('color', '#6e24b3');
   }, () => {
     caption.css('color', 'white');
   })
@@ -37,6 +42,7 @@ $(document).ready(function() {
 
   function setApodInfo(data) {
     console.log(data);
+    // account for when url is a video 
     // $('#container').css('background-image', 'url("' + data[0].url + '")');
     nasaImg.attr('src', data[0].url);
     if (data[0].copyright) author = data[0].copyright;
