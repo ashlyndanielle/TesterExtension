@@ -47,9 +47,13 @@ $(document).ready(function() {
 
   function setApodInfo(data) {
     console.log(data);
-    // account for when url is a video 
-    // $('#container').css('background-image', 'url("' + data[0].url + '")');
-    nasaImg.attr('src', data[0].url);
+    // account for when url is a video
+    for ( let x = 0; x < data.length; x++ ) {
+      if (checkURL(data[x].url)) {
+        nasaImg.attr('src', data[x].url);
+        break;
+      }
+    }
     if (data[0].copyright) author = data[0].copyright;
     description = data[0].explanation;
   }
@@ -62,5 +66,9 @@ $(document).ready(function() {
 
   function setArticles(data) {
     console.log(data.results);
+  }
+
+  function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
 })
