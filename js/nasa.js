@@ -6,7 +6,7 @@ $(document).ready(function() {
   });
 
   let section = 'home';
-  let nytArticles = `https://api.nytimes.com/svc/topstories/v2/${section}.json` + $.param({
+  let nytArticles = `https://api.nytimes.com/svc/topstories/v2/${section}.json?` + $.param({
     'api-key': config.nytKey
   });
 
@@ -35,6 +35,11 @@ $(document).ready(function() {
 
 
   window.onload = () => {
+    getApodInfo();
+    getNytInfo();
+  }
+  
+  function getApodInfo() {
     $.get(apod)
     .done( setApodInfo )
     .fail( err => console.log(err) )
@@ -49,4 +54,13 @@ $(document).ready(function() {
     description = data[0].explanation;
   }
 
+  function getNytInfo() {
+    $.get( nytArticles )
+    .done( setArticles )
+    .fail( err => console.log(err) )
+  }
+
+  function setArticles(data) {
+    console.log(data.results);
+  }
 })
