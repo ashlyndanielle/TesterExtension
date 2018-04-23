@@ -36,6 +36,10 @@ $(document).ready(function() {
     caption.css('color', 'white');
   })
 
+  caption.on('click', () => {
+    console.log('caption was clicked');
+  })
+
   function getApodInfo() {
     $.get(apod)
     .done( setApodInfo )
