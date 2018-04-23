@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+  const nasaContainer = $('#container');
+  const nasaImg = $('#nasa-img');
+  const caption = $('.nasa-caption');
+
+  let author;
+  let description;
+
   const apod = "https://api.nasa.gov/planetary/apod?" + $.param({
     'api_key': config.nasaKey,
     'count': 5
@@ -10,12 +17,10 @@ $(document).ready(function() {
     'api-key': config.nytKey
   });
 
-  const nasaContainer = $('#container');
-  const nasaImg = $('#nasa-img');
-  const caption = $('.nasa-caption');
-
-  let author;
-  let description;
+  window.onload = () => {
+    getApodInfo();
+    getNytInfo();
+  }
 
   nasaContainer.hover( () => {
     setTimeout( () => {
@@ -31,14 +36,6 @@ $(document).ready(function() {
     caption.css('color', 'white');
   })
 
-
-
-
-  window.onload = () => {
-    getApodInfo();
-    getNytInfo();
-  }
-  
   function getApodInfo() {
     $.get(apod)
     .done( setApodInfo )
@@ -54,10 +51,19 @@ $(document).ready(function() {
         break;
       }
     }
+    // console.log('img-width', nasaImg.width());
+    // console.log('img-height', nasaImg.height());
+    // console.log('width/height: ', nasaImg.width()/nasaImg.height());
+    //** account for images with too large of a width
     if (data[0].copyright) author = data[0].copyright;
     description = data[0].explanation;
   }
 
+  function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+  }
+
+  // NYT Articles
   function getNytInfo() {
     $.get( nytArticles )
     .done( setArticles )
@@ -66,9 +72,5 @@ $(document).ready(function() {
 
   function setArticles(data) {
     console.log(data.results);
-  }
-
-  function checkURL(url) {
-    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
 })

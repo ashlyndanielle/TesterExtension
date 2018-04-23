@@ -13,6 +13,9 @@
 /*
   Fired when the extension is first installed, when the extension is updated to a new 
   version, and when Chrome is updated to a new version
+
+  to view console.logs click on "Inspect views background page (Inactive)"
+  on this page: chrome://extensions/
 */
 chrome.runtime.onInstalled.addListener( () => {
   // storage api used to set values
