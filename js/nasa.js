@@ -17,11 +17,13 @@ $(document).ready(function() {
     'api-key': config.nytKey
   });
 
+  // retrieve data
   window.onload = () => {
     getApodInfo();
     getNytInfo();
   }
 
+  // show caption button on hover
   nasaContainer.hover( () => {
     setTimeout( () => {
       caption.fadeIn();
@@ -30,6 +32,7 @@ $(document).ready(function() {
     caption.hide();
   })
 
+  // change button color on hover
   caption.hover( () => {
     caption.css('color', '#6e24b3');
   }, () => {
@@ -40,12 +43,14 @@ $(document).ready(function() {
     console.log('caption was clicked');
   })
 
+  // nasa api call
   function getApodInfo() {
     $.get(apod)
     .done( setApodInfo )
     .fail( err => console.log(err) )
   }
 
+  // display nasa image
   function setApodInfo(data) {
     console.log(data);
     // account for when url is a video
@@ -55,14 +60,12 @@ $(document).ready(function() {
         break;
       }
     }
-    // console.log('img-width', nasaImg.width());
-    // console.log('img-height', nasaImg.height());
-    // console.log('width/height: ', nasaImg.width()/nasaImg.height());
     //** account for images with too large of a width
     if (data[0].copyright) author = data[0].copyright;
     description = data[0].explanation;
   }
 
+  // make sure image is not a video
   function checkURL(url) {
     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
@@ -74,6 +77,7 @@ $(document).ready(function() {
     .fail( err => console.log(err) )
   }
 
+  // display nyt data
   function setArticles(data) {
     console.log(data.results);
   }
