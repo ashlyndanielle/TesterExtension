@@ -11,47 +11,97 @@ img {
 
 section {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
-#container {
-  margin: 10px;
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #8f198f;
 }
 
-#nasa-img {
-  height: 75px;
-  width: auto;
-  transition: .3s ease-out;
-  opacity: .8;
+p {
+  padding: 5px;
 }
 
-#container:hover > img {
-  height: calc(100vh - 20px);
-  opacity: 1;
+.buffer {
+  height: 550px;
 }
 
-.nasa-caption {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  color: white;
-  background: rgba(0,0,0,0.8);
-  padding: 15px 20px;
-  margin: 2px;
-  box-shadow: 0 0 7px 0 #ffffff4d;
-  display: none;
-  cursor: pointer;
-}
+/************************/
+/***** NASA STYLING *****/
+/************************/
+  .nasa {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
 
-.nasa-caption:hover {
-  display: block;
-}
+  #nasa-container {
+    margin: 10px;
+  }
 
-.nasa-caption::before {
-  content: '+';
-  font-size: 35px;
-}
+  #nasa-img {
+    height: 75px;
+    width: auto;
+    transition: .3s ease-out;
+    opacity: .8;
+  }
 
-#nasa-author {
-  text-align: center;
-}
+  #nasa-container:hover > img {
+    height: calc(100vh - 20px);
+    opacity: 1;
+  }
+
+  .nasa-caption {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    background: rgba(0,0,0,0.8);
+    padding: 15px 20px;
+    margin: 2px;
+    box-shadow: 0 0 7px 0 #ffffff4d;
+    display: none;
+    cursor: pointer;
+  }
+
+  .nasa-caption:hover {
+    display: block;
+  }
+
+  .nasa-caption::before {
+    content: '+';
+    font-size: 35px;
+  }
+
+  #nasa-author {
+    text-align: center;
+  }
+
+/***************************/
+/***** NYTIMES STYLING *****/
+/***************************/
+
+  #nytimes-container {
+    justify-content: center;
+  }
+
+  .articles {
+    background: #fff;
+    min-height: 300px;
+    width: 220px;
+    text-align: center;
+    margin: 10px;
+  }
+
+  .articles .news-img {
+    background-position: center;
+    background-size: cover;
+    height: 220px;
+  }
+
+  .articles h2 {
+    height: 75px;
+    padding: 0 5px;
+  }

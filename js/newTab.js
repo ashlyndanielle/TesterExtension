@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
-  const nasaContainer = $('#container');
+  const nasaContainer = $('#nasa-container');
   const nasaImg = $('#nasa-img');
   const caption = $('.nasa-caption');
-
   let author;
   let description;
 
@@ -13,6 +12,7 @@ $(document).ready(function() {
   });
 
   let section = 'home';
+  let selection = 'World';
   let nytArticles = `https://api.nytimes.com/svc/topstories/v2/${section}.json?` + $.param({
     'api-key': config.nytKey
   });
@@ -41,6 +41,7 @@ $(document).ready(function() {
 
   caption.on('click', () => {
     console.log('caption was clicked');
+    caption.css('height', '')
   })
 
   // nasa api call
@@ -80,5 +81,16 @@ $(document).ready(function() {
   // display nyt data
   function setArticles(data) {
     console.log(data.results);
+    data.results.map( result => {
+      if (result.section === 'World') {
+        let content = `
+          <div class='world-news articles'>
+            <div class="news-img" style="background-image: url('${result.multimedia[4].url}')"></div>
+            <h2>${result.title}</h2>
+            <p><a href="${result.short_url}">Click Here</a> for more information.</p>
+          </div>`;
+        $('#nytimes-container').append(content);
+      }
+    });
   }
 })
