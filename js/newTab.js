@@ -12,7 +12,7 @@ $(document).ready(function() {
   });
 
   let section = 'home';
-  let selection = 'World';
+  let newsSelection = 'World';
   let nytArticles = `https://api.nytimes.com/svc/topstories/v2/${section}.json?` + $.param({
     'api-key': config.nytKey
   });
@@ -80,12 +80,14 @@ $(document).ready(function() {
 
   // display nyt data
   function setArticles(data) {
+    $('#nytimes-container').empty();
     console.log(data.results);
     data.results.map( result => {
-      if (result.section === 'World') {
+      console.log(result.section);
+      if (result.section === newsSelection) {
         let content = `
-          <div class='world-news articles'>
-            <div class="news-img" style="background-image: url('${result.multimedia[4].url}')"></div>
+          <div class='articles'>
+            <div class="news-img" style="background-image: url('${result.multimedia[4] ? result.multimedia[4].url : '../images/default-image.png'}')"></div>
             <h2>${result.title}</h2>
             <p><a href="${result.short_url}">Click Here</a> for more information.</p>
           </div>`;
@@ -93,4 +95,12 @@ $(document).ready(function() {
       }
     });
   }
+
+  // change new articles
+  $('#news-selector').on('change', () => {
+    console.log( $('#news-selector').val() )
+    newsSelection = $('#news-selector').val()
+    getNytInfo();
+  });
+
 })
