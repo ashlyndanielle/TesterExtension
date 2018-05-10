@@ -20,12 +20,9 @@ a {
   color: #8f198f;
 }
 
-p {
-  padding: 5px;
-}
-
 .buffer {
-  height: 550px;
+  height: 200px;
+  display: none;
 }
 
 .center {
@@ -39,6 +36,7 @@ p {
     position: absolute;
     right: 0px;
     top: 0px;
+    display: none;
   }
 
   #nasa-container {
@@ -70,7 +68,7 @@ p {
     cursor: pointer;
   }
 
-  .nasa-caption:hover {
+  .nasa-container:hover .nasa-caption {
     display: block;
   }
 
@@ -93,8 +91,7 @@ p {
 
   .articles {
     background: #fff;
-    min-height: 300px;
-    width: 220px;
+    width: 150px;
     text-align: center;
     margin: 10px;
   }
@@ -102,10 +99,40 @@ p {
   .articles .news-img {
     background-position: center;
     background-size: cover;
-    height: 220px;
+    height: 150px;
   }
 
-  .articles h2 {
-    height: 75px;
-    padding: 0 5px;
+  .articles .title {
+    height: 70px;
+    padding: 7px;
+    color: #fff;
+    background: rgba(0,0,0,0.8);
+    font-weight: normal;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .articles p:last-child {
+    margin: 0;
+    line-height: 30px;
+  }
+
+  .news-selectors {
+    justify-content: center;
+    padding: 0 40px;
+  }
+
+  input[name="news"] {
+    display: none;
+  }
+
+  .news-selectors label {
+    text-transform: uppercase;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: rgb(175, 174, 174);
+    border: 1px solid black;
+    cursor: pointer;
   }

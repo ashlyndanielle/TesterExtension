@@ -79,17 +79,19 @@ $(document).ready(function() {
   }
 
   // display nyt data
+  // FIX: account for cases when newsSelection is empty
   function setArticles(data) {
     $('#nytimes-container').empty();
     console.log(data.results);
     data.results.map( result => {
-      console.log(result.section);
+      // console.log(result.section);
+      // console.log(result.length);
       if (result.section === newsSelection) {
         let content = `
           <div class='articles'>
             <div class="news-img" style="background-image: url('${result.multimedia[4] ? result.multimedia[4].url : '../images/default-image.png'}')"></div>
-            <h2>${result.title}</h2>
-            <p><a href="${result.short_url}">Click Here</a> for more information.</p>
+            <p class="title">${result.title}</p>
+            <p><a href="${result.short_url}">More Info</a></p>
           </div>`;
         $('#nytimes-container').append(content);
       }
@@ -102,5 +104,11 @@ $(document).ready(function() {
     newsSelection = $('#news-selector').val()
     getNytInfo();
   });
+
+  const selectors = $('.news-selectors label');
+  selectors.on('click', function() {
+    newsSelection = $(this).context.innerHTML;
+    getNytInfo();
+  })
 
 })
