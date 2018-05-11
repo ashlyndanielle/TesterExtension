@@ -1,7 +1,7 @@
 body {
   width: 100%;
   height: 100%;
-  background: #222;
+  background: #FFF;
 }
 
 img {
@@ -17,7 +17,7 @@ section {
 a {
   text-decoration: none;
   font-weight: bold;
-  color: #8f198f;
+  color: #000;
 }
 
 .buffer {
@@ -27,6 +27,15 @@ a {
 
 .center {
   text-align: center;
+}
+
+.chip {
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #19258f8e;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.4);
+  color: #FFF;
 }
 
 /************************/
@@ -88,12 +97,13 @@ a {
   #nytimes-container {
     justify-content: center;
   }
-
+  
   .articles {
     background: #fff;
     width: 150px;
     text-align: center;
     margin: 10px;
+    box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.4);
   }
 
   .articles .news-img {
@@ -103,10 +113,10 @@ a {
   }
 
   .articles .title {
-    height: 70px;
-    padding: 7px;
-    color: #fff;
-    background: rgba(0,0,0,0.8);
+    height: 80px;
+    padding: 7px 10px;
+    color: #eee;
+    background: #333;
     font-weight: normal;
     margin: 0;
     display: flex;
@@ -117,11 +127,18 @@ a {
   .articles p:last-child {
     margin: 0;
     line-height: 30px;
+    background-color: #888;
+    cursor: pointer;
+  }
+
+  .articles p:last-child:hover a {
+    color: #fff;
   }
 
   .news-selectors {
     justify-content: center;
-    padding: 0 40px;
+    padding: 0 200px;
+    margin-top: 50px;
   }
 
   input[name="news"] {
@@ -130,9 +147,4 @@ a {
 
   .news-selectors label {
     text-transform: uppercase;
-    padding: 10px 15px;
-    margin: 5px;
-    background-color: rgb(175, 174, 174);
-    border: 1px solid black;
-    cursor: pointer;
   }

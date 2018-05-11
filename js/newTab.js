@@ -78,29 +78,41 @@ $(document).ready(function() {
     .fail( err => console.log(err) )
   }
 
-  // display nyt data
-  // FIX: account for cases when newsSelection is empty
+  // display nyt data  
   function setArticles(data) {
     $('#nytimes-container').empty();
+
     console.log(data.results);
+
+    let sectionValues = [];
+    var chips;
+    
     data.results.map( result => {
-      // console.log(result.section);
-      // console.log(result.length);
+      // find each section
+      if (!sectionValues.includes(result.section)) {
+        sectionValues.push(result.section);
+      }
+      // make a tile for each article with a section matching 'newsSelection'
       if (result.section === newsSelection) {
-        let content = `
+        let articles = `
           <div class='articles'>
             <div class="news-img" style="background-image: url('${result.multimedia[4] ? result.multimedia[4].url : '../images/default-image.png'}')"></div>
             <p class="title">${result.title}</p>
             <p><a href="${result.short_url}">More Info</a></p>
           </div>`;
-        $('#nytimes-container').append(content);
+        $('#nytimes-container').append(articles);
       }
-    });
+    })
+    // add a chip button for each section
+    chips = sectionValues.map( value => {
+      let chip = `<label class="chip">${value}</label>`
+      console.log(chip);
+      $('.news-selectors').append(chip);
+    })
   }
 
   // change new articles
   $('#news-selector').on('change', () => {
-    console.log( $('#news-selector').val() )
     newsSelection = $('#news-selector').val()
     getNytInfo();
   });
