@@ -13,6 +13,7 @@ $(document).ready(function() {
 
   let section = 'home';
   let newsSelection = 'World';
+  let selectors = ['World'];
   let nytArticles = `https://api.nytimes.com/svc/topstories/v2/${section}.json?` + $.param({
     'api-key': config.nytKey
   });
@@ -109,6 +110,7 @@ $(document).ready(function() {
       console.log(chip);
       $('.news-selectors').append(chip);
     })
+    selectors = $('.news-selectors label');
   }
 
   // change new articles
@@ -117,8 +119,8 @@ $(document).ready(function() {
     getNytInfo();
   });
 
-  const selectors = $('.news-selectors label');
   selectors.on('click', function() {
+    console.log('clicked');
     newsSelection = $(this).context.innerHTML;
     getNytInfo();
   })
