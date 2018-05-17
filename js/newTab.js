@@ -81,7 +81,9 @@ $(document).ready(function() {
 
   // display nyt data  
   function setArticles(data) {
+    // empty articles and chips
     $('#nytimes-container').empty();
+    $('.news-selectors').empty();
 
     console.log(data.results);
 
@@ -89,7 +91,7 @@ $(document).ready(function() {
     var chips;
     
     data.results.map( result => {
-      // find each section
+      // push each section minus the duplicates into sectionValues
       if (!sectionValues.includes(result.section)) {
         sectionValues.push(result.section);
       }
@@ -107,22 +109,22 @@ $(document).ready(function() {
     // add a chip button for each section
     chips = sectionValues.map( value => {
       let chip = `<label class="chip">${value}</label>`
-      console.log(chip);
       $('.news-selectors').append(chip);
     })
     selectors = $('.news-selectors label');
+    return selectors.on('click', function() {
+      console.log('clicked');
+      newsSelection = $(this).context.innerHTML;
+      getNytInfo();
+    })
   }
 
-  // change new articles
+  // change section displaying
   $('#news-selector').on('change', () => {
     newsSelection = $('#news-selector').val()
     getNytInfo();
   });
 
-  selectors.on('click', function() {
-    console.log('clicked');
-    newsSelection = $(this).context.innerHTML;
-    getNytInfo();
-  })
 
+  
 })
