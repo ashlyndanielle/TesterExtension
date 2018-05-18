@@ -5,11 +5,11 @@ $(document).ready(function() {
   const caption = $('.nasa-caption');
   let author;
   let description;
-
   const apod = "https://api.nasa.gov/planetary/apod?" + $.param({
     'api_key': config.nasaKey,
     'count': 5
   });
+
 
   let section = 'home';
   let newsSelection = 'World';
@@ -18,10 +18,16 @@ $(document).ready(function() {
     'api-key': config.nytKey
   });
 
+  const stocks = `https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&` + $.param({
+    'symbols': 'MSFT,FB,AAPL,COST,TGT&',
+    'apikey': config.stockKey
+  })
+
   // retrieve data
   window.onload = () => {
     getApodInfo();
     getNytInfo();
+    getStocks();
   }
 
   // show caption button on hover
@@ -111,7 +117,9 @@ $(document).ready(function() {
       let chip = `<label class="chip">${value}</label>`
       $('.news-selectors').append(chip);
     })
+    // set selectors to be each chip
     selectors = $('.news-selectors label');
+    // return the on click function for chips
     return selectors.on('click', function() {
       console.log('clicked');
       newsSelection = $(this).context.innerHTML;
@@ -126,5 +134,10 @@ $(document).ready(function() {
   });
 
 
-  
+  function getStocks() {
+    $.get( stocks )
+    .done( data => console.log("stocks: ", data['Stock Quotes']) )
+    .fail( err => console.log(err) )
+  }
+
 })
