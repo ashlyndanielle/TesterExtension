@@ -77,6 +77,9 @@ $(document).ready(function() {
   function checkURL(url) {
     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
+  /*
+    stuff and things
+  */
 
   // NYT Articles
   function getNytInfo() {
