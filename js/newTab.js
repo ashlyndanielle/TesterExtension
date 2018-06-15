@@ -77,9 +77,7 @@ $(document).ready(function() {
   function checkURL(url) {
     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
-  /*
-    stuff and things
-  */
+
 
   // NYT Articles
   function getNytInfo() {
@@ -124,7 +122,6 @@ $(document).ready(function() {
     selectors = $('.news-selectors label');
     // return the on click function for chips
     return selectors.on('click', function() {
-      console.log('clicked');
       newsSelection = $(this).context.innerHTML;
       getNytInfo();
     })

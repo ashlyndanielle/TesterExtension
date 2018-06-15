@@ -148,3 +148,7 @@ a {
   .news-selectors label {
     text-transform: uppercase;
   }
+
+  .active-chip {
+    background-color: #8f1923b9;
+  }
