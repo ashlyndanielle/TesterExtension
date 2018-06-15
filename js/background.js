@@ -27,6 +27,7 @@ chrome.runtime.onInstalled.addListener( () => {
     console.log('----------------------------------');
     console.log('chrome: ', chrome);
   })
+  
   chrome.storage.sync.get(['color'], result => {
     console.log('The color is currently ', result.color);
   })
