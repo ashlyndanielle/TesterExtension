@@ -19,15 +19,19 @@ $(document).ready(function() {
   });
 
   const stocks = `https://www.alphavantage.co/query?function=BATCH_STOCK_QUOTES&` + $.param({
-    'symbols': 'MSFT,FB,AAPL,COST,TGT&',
+    'symbols': 'MSFT,BYND,MLFNF',
     'apikey': config.stockKey
   })
+
+  const beyondMeat = `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=BYND&apikey=${config.stockKey}`;
+  
 
   // retrieve data
   window.onload = () => {
     getApodInfo();
     getNytInfo();
     getStocks();
+    getBeyond();
   }
 
   // show caption button on hover
@@ -135,9 +139,15 @@ $(document).ready(function() {
 
 
   function getStocks() {
-    $.get( stocks )
-    .done( data => console.log("stocks: ", data['Stock Quotes']) )
-    .fail( err => console.log(err) )
+    $.get(stocks)
+    .done(data => console.log("stocks: ", data['Stock Quotes']))
+    .fail(err => console.log(err))
+  }
+
+  function getBeyond() {
+    $.get(beyondMeat)
+      .done(data => console.log('Beyond Meat: ', data))
+      .fail(err => console.log(err))
   }
 
 })
